@@ -1,9 +1,6 @@
 package com.devsuperior.dsmeta.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +33,7 @@ public class SaleController {       /* disponibiliza os andpoints usados pelo fr
         return service.findSales(minDate, maxDate, pageable);
         
     }
-    
+
     @GetMapping("/{id}/notification")
     public void notifySms(@PathVariable Long id){
         smsService.sendSms(id);
