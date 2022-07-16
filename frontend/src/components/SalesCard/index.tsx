@@ -9,19 +9,26 @@ import './style.css';
 
 function SalesCard() {
 
-    //const date = new Date(new Date().setDate(new Date().getDate() - 365));
+    const min = new Date(new Date().setDate(new Date().getDate() - 365));
+    const max = new Date();
 
-    const [minDate, setMinDate] = useState(new Date());
-    const [maxDate, setMaxDate] = useState(new Date());
+    const [minDate, setMinDate] = useState(min);
+    const [maxDate, setMaxDate] = useState(max);
 
     const [sales, setSales] = useState<Sale[]>([]);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/sales`)
+
+        const dmin = minDate.toISOString().slice(0, 10);
+
+        const dmax = minDate.toISOString().slice(0, 10);
+
+
+        axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
             .then(reponse => {
                 setSales(reponse.data.content);
-            })
-    }, [])
+            });
+    }, [minDate, maxDate]);
 
 
     return (
