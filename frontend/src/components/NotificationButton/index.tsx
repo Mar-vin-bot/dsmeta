@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import icon from'../../assests/img/notification-icon.svg'
 import { BASE_URL } from '../../utils/request';
 import './style.css'
@@ -11,7 +12,7 @@ function hendleClick(id: number){
     
     axios(`${BASE_URL}/sales/${id}/notification`)
     .then(response =>{
-        console.log("sucesso")
+        toast.info("Sms enviado com sucesso");
     })
 }
 
